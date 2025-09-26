@@ -1,62 +1,74 @@
-# BYUI Formula Hybrid Team Organization
+# Project Name
 
-Welcome to the official GitHub organization for the **BYUI Formula Hybrid Team**!  
+## Overview
 
-We are a multidisciplinary team of students and engineers working on the BYUI Formula Hybrid car project, combining **mechanical, electrical, and software expertise** to design, build, and compete in hybrid vehicle competitions.
-
----
-
-## Our Mission
-
-To innovate and excel in hybrid vehicle engineering by fostering collaboration, learning, and hands-on experience for all team members.
+Briefly describe what this repository is for.
+*Example: "This repository contains the software for the dashboard display used in the BYUI Formula Hybrid vehicle."*
 
 ---
 
-## Organization Structure
+## Table of Contents
 
-The Engineering Team is divided into three sub-teams:
-
-| Sub-Team       | Focus Area                                              |
-|----------------|--------------------------------------------------------|
-| Mechanical     | Design, manufacturing, and testing of mechanical systems |
-| Electrical     | Electronics design, wiring, and power systems        |
-| Software       | Software development, firmware, and control systems |
-
-Each sub-team operates semi-autonomously but collaborates closely on integration and project-wide initiatives.
+* [Overview](#overview)
+* [Getting Started](#getting-started)
+* [Contributing](#contributing)
+* [Support](#support)
+* [License](#license)
+* [Acknowledgments](#acknowledgments)
 
 ---
 
-## How to Get Involved
+## Getting Started
 
-We welcome contributions from students, mentors, and other collaborators! You can contribute in several ways:
+### Prerequisites
 
-1. **Report Issues** – Use the GitHub Issue Templates (`Story`, `Feature`, `Bug`, `Task`, `RFC`) to report problems or propose improvements.
-2. **Join Discussions** – Our primary support and collaboration channel is **Discord**. [Join our server here](Insert Discord Invite Link)
-3. **Contribute Code** – Fork repositories, submit pull requests, and follow our [Contribution Guidelines](CONTRIBUTING.md).
+List any tools, libraries, or dependencies needed to build/run the project. Example:
 
----
+* [Python 3.10+](https://www.python.org/downloads/)
+* [PlatformIO](https://platformio.org/)
+* [Node.js](https://nodejs.org/) *(if applicable)*
 
-## Key Resources
+### Installation
 
-- [CONTRIBUTING.md](CONTRIBUTING.md) – How to contribute to projects  
-- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) – Expected behavior and inclusivity  
-- [SUPPORT.md](SUPPORT.md) – Where to get help and support  
-- [GOVERNANCE.md](GOVERNANCE.md) – Organization structure, roles, and permissions  
+```bash
+# clone the repo
+git clone https://github.com/BYUI-Formula-Hybrid/<repo-name>.git
+cd <repo-name>
 
----
+# install dependencies
+<insert installation command>
+```
 
-## Communication
+### Running the Project
 
-- **Discord:** Primary platform for team discussions and support  
-- **GitHub Issues & Pull Requests:** Track bugs, features, and development progress  
-- **Meetings:** Scheduled regularly within sub-teams and for cross-team coordination  
-
----
-
-## Acknowledgements
-
-We are grateful to all mentors, alumni, and contributors who make this program possible. Together, we drive innovation, learning, and teamwork.
+```bash
+<insert run/build command>
+```
 
 ---
 
-*BYUI Formula Hybrid Team Organization – Building the future of hybrid vehicle engineering.*
+## Contributing
+
+We welcome contributions! Please follow our [organization-wide contributing guide](https://github.com/BYUI-Formula-Hybrid/.github/blob/main/CONTRIBUTING.md).
+
+For larger changes, open an issue or discussion before submitting a pull request.
+
+---
+
+## Support
+
+If you need help, check our [support guide](https://github.com/BYUI-Formula-Hybrid/.github/blob/main/SUPPORT.md) or join the [Discord server](Insert Discord Invite Link).
+
+---
+
+## License
+
+Specify the license here (e.g., MIT, Apache 2.0).
+If unsure, check with the team leads before publishing code under a license.
+
+---
+
+## Acknowledgments
+
+* BYUI Formula Hybrid Team Engineering Division (Mechanical, Electrical, Software)
+* Contributors and maintainers of this project
