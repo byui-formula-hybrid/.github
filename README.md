@@ -1,4 +1,4 @@
-# BYUI Formula Hybrid Team Organization – GitHub Defaults Repository
+# BYUI Formula Hybrid Team Organization – GitHub Defaults Repository 
 
 Welcome to the **organization-wide `.github` repository** for the BYUI Formula Hybrid Team!  
 
