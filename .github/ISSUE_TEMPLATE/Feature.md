@@ -1,38 +1,22 @@
 ---
 name: Feature
 about: Request or define a new feature
-title: ''
-labels: feature
-assignees: ''
+title: Feature: <Name>
+type: Feature
 ---
-
-# Feature Request
-
-**Title:**  
-<!-- Concise summary of the feature, e.g., "Implement two-factor authentication" -->
-
-**Description / Motivation:**  
+## Description:  
 <!-- Explain why this feature is needed and what problem it solves -->
 
-**Proposed Solution / Implementation Details:**  
-<!-- Describe how this feature could be implemented. Include technical details, API changes, or design ideas -->
-
-**Acceptance Criteria / Requirements:**  
+## Requirements: 
 - [ ] Criterion 1: (specific behavior, functionality, or output)  
 - [ ] Criterion 2: (specific behavior, functionality, or output)  
 - [ ] Criterion 3: (specific behavior, functionality, or output)
 
-**Definition of Done:**  
-- [ ] Code implemented and reviewed  
-- [ ] Unit/integration tests written and passing  
-- [ ] Documentation updated  
-- [ ] Deployed to staging environment  
+## Tech Refinement:  
+<!-- Describe how this feature could be implemented. Include technical details, API changes, or design ideas -->
 
-**Priority / Importance:**  
-<!-- High, Medium, Low -->
-
-**Dependencies / Related Issues:**  
+## Dependencies:
 <!-- List any dependencies, blockers, or related issues -->
 
-**Additional Notes / Context:**  
+## Notes: 
 <!-- Any extra information, mockups, diagrams, or references -->
