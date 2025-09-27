@@ -1,7 +1,7 @@
 ---
 name: Feature
 about: Request or define a new feature
-title: Feature:
+title: 'Feature:'
 type: Feature
 ---
 ## Description:  
