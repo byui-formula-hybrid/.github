@@ -1,40 +1,29 @@
 ---
 name: Bug
 about: Report a problem or unexpected behavior
-title: ''
-labels: bug
-assignees: ''
+type: Bug
 ---
-
-# Bug Report
-
-**Title:**  
-<!-- Concise description of the bug, e.g., "App crashes when opening settings" -->
-
-**Description:**  
+## Description: 
 <!-- Describe the problem clearly and why it’s a bug -->
 
-**Steps to Reproduce:**  
+## Steps to Reproduce:
 1. Go to '...'  
 2. Click on '...'  
 3. Observe the problem  
 
-**Expected Behavior:**  
+## Expected Behavior:
 <!-- What you expected to happen -->
 
-**Actual Behavior:**  
+## Actual Behavior:
 <!-- What actually happened -->
 
-**Screenshots / Videos:**  
+## Screenshots / Videos:  
 <!-- Optional: Add any screenshots or recordings -->
 
-**Environment / Context:**  
+## Environment / Context:
 - OS: <!-- e.g., macOS, Windows, iOS -->  
 - Browser / App version: <!-- if applicable -->  
-- Device: <!-- if applicable -->  
-
-**Priority / Severity:**  
-<!-- High, Medium, Low -->
-
-**Additional Notes:**  
+- Device: <!-- if applicable -->
+  
+## Notes:
 <!-- Any extra context, logs, or references -->
