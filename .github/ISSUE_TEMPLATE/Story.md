@@ -1,40 +1,30 @@
 ---
 name: Story
 about: Create a user story for a feature or improvement
-title: ''
-labels: story
-assignees: ''
+type: Story
 ---
 
-# Story
+[Feature](<!-- Insert Link to Related Feature -->)
 
-**Title:**  
-<!-- Concise summary of the story, e.g., "Add login feature for users" -->
+## Description:
+As a <!-- [type of user] -->  
+I want <!-- [some goal] -->  
+So that <!-- [some reason/value] -->  
 
-**Story Description:**  
-As a [type of user]  
-I want [some goal]  
-So that [some reason/value]
-
-**Acceptance Criteria:**  
+## Acceptance Criteria:  
 - [ ] Criterion 1: (specific behavior or functionality)  
 - [ ] Criterion 2: (specific behavior or functionality)  
 - [ ] Criterion 3: (specific behavior or functionality)
 
-**Definition of Done:**  
+## Definition of Done:
 - [ ] Code is implemented and reviewed  
 - [ ] Unit/integration tests are written and passing  
 - [ ] Documentation updated  
 - [ ] Deployed to staging environment  
 
-**Priority:**  
-<!-- High, Medium, Low -->
+## Dependencies:
+<!-- List with Links any related issues, bugs, or dependencies -->
+[Dependency](<!-- Insert Link to Depenedency -->)
 
-**Story Points / Effort Estimate:**  
-<!-- Optional: e.g., 3 points, 5 points -->
-
-**Related Issues / Dependencies:**  
-<!-- List any related issues, bugs, or dependencies -->
-
-**Notes / Additional Context:**  
+## Notes:
 <!-- Any extra information, mockups, references, or constraints -->
