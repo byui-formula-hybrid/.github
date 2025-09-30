@@ -24,7 +24,7 @@ So that <!-- [some reason/value] -->
 
 ## Dependencies:
 <!-- List with Links any related issues, bugs, or dependencies -->
-[Dependency](<!-- Insert Link to Depenedency -->)
+[Dependency](<!-- Insert Link to Dependency -->)
 
 ## Notes:
 <!-- Any extra information, mockups, references, or constraints -->
