@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-  # Workflow is repository-scoped: use repository secrets and GitHub context directly
+  workflow_call:
 
 jobs:
   notify-discord:

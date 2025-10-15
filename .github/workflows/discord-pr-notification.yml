@@ -4,7 +4,7 @@ name: Notify Discord on PR Creation
 on:
   pull_request:
     types: [opened, ready_for_review]
-  # Repository-scoped: use repository secrets and event context directly
+  workflow_call:
 
 jobs:
   notify-discord:
