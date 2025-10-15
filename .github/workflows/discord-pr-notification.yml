@@ -4,18 +4,46 @@ name: Notify Discord on PR Creation
 on:
   pull_request:
     types: [opened, ready_for_review]
+  # Repository-scoped: use repository secrets and event context directly
 
 jobs:
   notify-discord:
     runs-on: [self-hosted, Linux]
     steps:
+      - name: Determine whether to notify
+        id: should_notify
+        run: |
+          # Use the event payload to determine if the PR is a draft
+          if [ "${{ github.event.pull_request.draft }}" = "true" ]; then
+            echo "draft=true" >> $GITHUB_OUTPUT
+          else
+            echo "draft=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Send Discord notification
-        if: ${{ !github.event.pull_request.draft }}
+        if: ${{ steps.should_notify.outputs.draft == 'false' }}
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_ROLE_ID: ${{ secrets.DISCORD_ROLE_ID }}
         run: |
-          curl -H "Content-Type: application/json" \
-            -d '{
-              "content": "<@&1245089722351489044> A new PR has been opened by ${{ github.actor }}: [Please review this PR](${{ github.event.pull_request.html_url }})!"
-            }' \
+          # Build PR URL from event context
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          PR_NUM="${{ github.event.pull_request.number }}"
+          if [ -n "$DISCORD_ROLE_ID" ]; then
+            ROLE_MENTION="<@&${DISCORD_ROLE_ID}> "
+          else
+            ROLE_MENTION=""
+          fi
+          MESSAGE="$ROLE_MENTION A new PR has been opened by ${{ github.actor }}: [Please review this PR]($PR_URL)"
+          if [ -n "$PR_NUM" ]; then
+            MESSAGE="$MESSAGE (#$PR_NUM)"
+          fi
+
+          if [ -z "$DISCORD_WEBHOOK" ]; then
+            echo "DISCORD_WEBHOOK is not set. Add it to repository secrets as DISCORD_WEBHOOK." >&2
+            exit 1
+          fi
+
+          curl -s -H "Content-Type: application/json" \
+            -d "{\"content\": \"${MESSAGE}\"}" \
             "$DISCORD_WEBHOOK"

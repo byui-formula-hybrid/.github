@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+  # Workflow is repository-scoped: use repository secrets and GitHub context directly
 
 jobs:
   notify-discord:
@@ -13,9 +14,22 @@ jobs:
       - name: Send Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_ROLE_ID: ${{ secrets.DISCORD_ROLE_ID }}
         run: |
-          curl -H "Content-Type: application/json" \
-            -d '{
-                "content": "<@&1245089722351489044> Branch was merged into main by ${{ github.actor }}. See commit: [${{ github.sha }}](${{ github.event.head_commit.url }})"
-            }' \
+          # Repository-scoped: use secrets and GitHub-provided environment/context
+          if [ -n "$DISCORD_ROLE_ID" ]; then
+            ROLE_MENTION="<@&${DISCORD_ROLE_ID}> "
+          else
+            ROLE_MENTION=""
+          fi
+          COMMIT_SHA="$GITHUB_SHA"
+          COMMIT_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$COMMIT_SHA"
+
+          if [ -z "$DISCORD_WEBHOOK" ]; then
+            echo "DISCORD_WEBHOOK is not set. Add it to repository secrets as DISCORD_WEBHOOK." >&2
+            exit 1
+          fi
+
+          curl -s -H "Content-Type: application/json" \
+            -d "{\"content\": \"${ROLE_MENTION} Branch was merged into main by $GITHUB_ACTOR. See commit: [${COMMIT_SHA}](${COMMIT_URL})\"}" \
             "$DISCORD_WEBHOOK"
