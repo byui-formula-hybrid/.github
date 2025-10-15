@@ -1,0 +1,4 @@
+{
+    "name": "Discord Merge Notification",
+    "description": "Notifies that a PR was merged into the default branch."
+}
