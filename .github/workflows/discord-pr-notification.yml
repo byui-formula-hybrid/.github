@@ -2,9 +2,12 @@
 name: Notify Discord on PR Creation
 
 on:
-  pull_request:
-    types: [opened, ready_for_review]
   workflow_call:
+    secrets:
+      DISCORD_WEBHOOK:
+        required: true
+      DISCORD_ROLE_ID:
+        required: false
 
 jobs:
   notify-discord:

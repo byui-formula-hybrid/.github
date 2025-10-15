@@ -2,10 +2,12 @@
 name: Notify Discord on Merge
 
 on:
-  push:
-    branches:
-      - main
   workflow_call:
+    secrets:
+      DISCORD_WEBHOOK:
+        required: true
+      DISCORD_ROLE_ID:
+        required: false
 
 jobs:
   notify-discord:
