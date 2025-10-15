@@ -1,0 +1,4 @@
+{
+    "name": "Discord PR Notification",
+    "description": "Used to notify discord channel there was a PR created and ready for review."
+}
