@@ -8,6 +8,15 @@ on:
         required: true
       DISCORD_ROLE_ID:
         required: false
+    inputs:
+      pr_head_ref:
+        description: 'Optional PR head branch name (callers can provide)'
+        required: false
+        type: string
+      pr_base_ref:
+        description: 'Optional PR base branch name (callers can provide)'
+        required: false
+        type: string
 
 jobs:
   notify-discord:
@@ -28,16 +37,28 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_ROLE_ID: ${{ secrets.DISCORD_ROLE_ID }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_NUM: ${{ github.event.pull_request.number }}
+          PR_HEAD: ${{ inputs.pr_head_ref || github.event.pull_request.head.ref }}
+          PR_BASE: ${{ inputs.pr_base_ref || github.event.pull_request.base.ref }}
+          REPO_NAME: ${{ github.repository }}
         run: |
-          # Build PR URL from event context
-          PR_URL="${{ github.event.pull_request.html_url }}"
-          PR_NUM="${{ github.event.pull_request.number }}"
+          # Build PR URL from event context (env PR_URL/PR_NUM set above)
           if [ -n "$DISCORD_ROLE_ID" ]; then
             ROLE_MENTION="<@&${DISCORD_ROLE_ID}> "
           else
             ROLE_MENTION=""
           fi
-          MESSAGE="$ROLE_MENTION A new PR has been opened by ${{ github.actor }}: [Please review this PR]($PR_URL)"
+
+          # Ensure branch names have fallback
+          if [ -z "$PR_HEAD" ]; then
+            PR_HEAD="(unknown)"
+          fi
+          if [ -z "$PR_BASE" ]; then
+            PR_BASE="(unknown)"
+          fi
+
+          MESSAGE="$ROLE_MENTION${REPO_NAME}: New PR opened from '$PR_HEAD' into '$PR_BASE' by $GITHUB_ACTOR: [Please review this PR]($PR_URL)"
           if [ -n "$PR_NUM" ]; then
             MESSAGE="$MESSAGE (#$PR_NUM)"
           fi

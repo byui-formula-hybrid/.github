@@ -8,6 +8,11 @@ on:
         required: true
       DISCORD_ROLE_ID:
         required: false
+    inputs:
+      source_branch:
+        description: 'Optional source branch that was merged into main (callers can provide).'
+        required: false
+        type: string
 
 jobs:
   notify-discord:
@@ -27,11 +32,37 @@ jobs:
           COMMIT_SHA="$GITHUB_SHA"
           COMMIT_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/commit/$COMMIT_SHA"
 
+          # Resolve source branch: prefer provided input, otherwise try to parse from the merge commit message
+          if [ -n "${{ inputs.source_branch }}" ]; then
+            SOURCE_BRANCH="${{ inputs.source_branch }}"
+          else
+            # Try to read the commit message and extract common merge patterns
+            if git rev-parse --git-dir > /dev/null 2>&1; then
+              COMMIT_MSG=$(git show -s --pretty=%B "$COMMIT_SHA" 2>/dev/null || echo "")
+            else
+              COMMIT_MSG=""
+            fi
+
+            # Pattern: "Merge pull request #123 from owner/branch"
+            SOURCE_BRANCH=$(echo "$COMMIT_MSG" | sed -nE 's/.*from [^/]+\/([^ ]+).*/\1/p' | head -n1)
+
+            # If not found, pattern: "Merge branch 'branch'"
+            if [ -z "$SOURCE_BRANCH" ]; then
+              SOURCE_BRANCH=$(echo "$COMMIT_MSG" | sed -nE "s/.*Merge branch '([^']+)'.*/\1/p" | head -n1)
+            fi
+
+            if [ -z "$SOURCE_BRANCH" ]; then
+              SOURCE_BRANCH="(unknown)"
+            fi
+          fi
+
+          REPO_NAME="$GITHUB_REPOSITORY"
+
           if [ -z "$DISCORD_WEBHOOK" ]; then
             echo "DISCORD_WEBHOOK is not set. Add it to repository secrets as DISCORD_WEBHOOK." >&2
             exit 1
           fi
 
           curl -s -H "Content-Type: application/json" \
-            -d "{\"content\": \"${ROLE_MENTION} Branch was merged into main by $GITHUB_ACTOR. See commit: [${COMMIT_SHA}](${COMMIT_URL})\"}" \
+            -d "{\"content\": \"${ROLE_MENTION}${REPO_NAME}: Branch '${SOURCE_BRANCH}' was merged into main by $GITHUB_ACTOR. See commit: [${COMMIT_SHA}](${COMMIT_URL})\"}" \
             "$DISCORD_WEBHOOK"

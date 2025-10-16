@@ -1,0 +1,20 @@
+{
+  "name": "discord-pr-notification",
+  "title": "Notify Discord on PR Creation",
+  "description": "Sends a Discord webhook notification when a new pull request is opened or marked ready for review. Uses repository secret DISCORD_WEBHOOK. Optionally mentions a role via DISCORD_ROLE_ID.",
+  "author": "byui-formula-hybrid",
+  "secrets": [
+    {
+      "name": "DISCORD_WEBHOOK",
+      "required": true,
+      "description": "Discord webhook URL. Store as a repository or organization secret and map to the called workflow when using `uses:`."
+    },
+    {
+      "name": "DISCORD_ROLE_ID",
+      "required": false,
+      "description": "Numeric role id to mention (e.g. 1245089722351489044). If provided, the workflow will prepend a role mention."
+    }
+  ],
+  "inputs": [],
+  "usage": "For cross-repo calls, map the secrets in the caller workflow under `secrets:` when using `uses:`. For same-repo use, add the secrets to the repository settings."
+}
